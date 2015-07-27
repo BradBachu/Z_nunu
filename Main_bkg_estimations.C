@@ -88,19 +88,23 @@ void Get_Estimate_from(TString file_directory , TString category)
 	TH1F* h_Photon_Photon_Control_mvamet_unweighted = (TH1F*) Make_my_hist(rootfile, category, "Photon_photon_control", "mvamet","weight" , nbins , xMin, xMax, xMin);
 	TH1F* h_Photon_Photon_Control_genVpt_unweighted = (TH1F*) Make_my_hist(rootfile, category ,"Photon_photon_control", "genVpt","weight" , 100, 0, 1000 , 170);
 	TH1F* h_Zll_di_muon_control_mvamet_unweighted = (TH1F*) Make_my_hist(rootfile, category , "Zll_di_muon_control" , "mvamet", "weight" , nbins , xMin, xMax , xMin);
-	
+	TH1F* h_Wjets_signal_mvamet_unweighted = (TH1F*) Make_my_hist(rootfile, category, "Wjets_signal", "mvamet", "weight", nbins , xMin , xMax, xMin);
+	TH1F* h_Wjets_single_control_mvamet_unweighted = (TH1F*) Make_my_hist(rootfile, category, "Wjets_single_muon_control", "mvamet","weight", nbins, xMin , xMax,xMin);
+
 	//weighted
  	TH1F* h_Photon_Photon_Control_genVpt_weighted = (TH1F*) Make_my_hist(rootfile, category ,"Photon_photon_control", "genVpt", "weight" , 100, 0, 1000, 170 );
  	TH1F* h_Photon_Photon_Control_mvamet_weighted = (TH1F*) Make_my_hist(rootfile, category , "Photon_photon_control", "mvamet", "weight", nbins, xMin, xMax, xMin);
  	TH1F* h_Znunu_Signal_genVpt_weighted = (TH1F*) Make_my_hist(rootfile, category , "Znunu_signal", "genVpt", "weight" ,100, 0, 1000 , 170);
 	TH1F* h_Znunu_Signal_mvamet_weighted = (TH1F*) Make_my_hist(rootfile, category ,"Znunu_signal", "mvamet", "weight", nbins , xMin, xMax , 0);
 	TH1F* h_Zll_di_muon_control_mvamet_weighted = (TH1F*) Make_my_hist(rootfile, category , "Zll_di_muon_control" , "mvamet" , "weight" , nbins , xMin, xMax ,xMin );
-
+	TH1F* h_Wjets_signal_mvamet_weighted = (TH1F*) Make_my_hist(rootfile, category, "Wjets_signal", "mvamet", "weight", nbins , xMin , xMax, xMin);
+	TH1F* h_Wjets_single_control_mvamet_weighted = (TH1F*) Make_my_hist(rootfile, category, "Wjets_single_muon_control", "mvamet", "weight", nbins, xMin , xMax,xMin);
 	// in Data
 	TH1F* h_data_photon_control_ptpho = (TH1F*) Make_my_hist(rootfile, category , "data_photon_control", "ptpho","data" , 100, 0, 1000, 0);
 	TH1F* h_data_photon_control_mvamet = (TH1F*) Make_my_hist(rootfile , category ,"data_photon_control", "mvamet", "data", nbins, xMin, xMax, xMin);
 	TH1F* h_data_di_muon_control_mvamet = (TH1F*) Make_my_hist(rootfile, category ,"data_di_muon_control", "mvamet", "data" , nbins , xMin, xMax,xMin);
-
+	TH1F* h_data_single_muon_control_mvamet = (TH1F*) Make_my_hist(rootfile , category , "data_single_muon_control", "mvamet", "data", nbins, xMin , xMax, xMin);
+	TCanvas *Sdfa = new TCanvas(); h_data_single_muon_control_mvamet->Draw();
 
 	//compare the MET distributions of both control regions to the signal region
 	//Draw_2_Hist(h_Photon_Photon_Control_mvamet_unweighted,h_Znunu_Signal_mvamet_unweighted , "Comparision of MET in Z#rightarrow#nu#nu Signal Region to #gamma + Jet Control Region " + category, "MET", "","#gamma + Jet MC" ,"Z#rightarrow#nu#nu MC" , 2, 1, "");
@@ -120,13 +124,19 @@ void Get_Estimate_from(TString file_directory , TString category)
 	TH1F* h_Photon_Photon_Control_mvamet_weighted_rebinned = (TH1F*) Rebin_with_density(h_Photon_Photon_Control_mvamet_weighted , bin_edges, n_edges);
 	TH1F* h_data_di_muon_control_mvamet_rebinned = (TH1F*) Rebin_with_density(h_data_di_muon_control_mvamet , bin_edges , n_edges);
 	TH1F* h_Zll_di_muon_control_mvamet_weighted_rebinned = (TH1F*) Rebin_with_density(h_Zll_di_muon_control_mvamet_weighted, bin_edges, n_edges);
+	TH1F* h_Wjets_signal_mvamet_weighted_rebinned = (TH1F*) Rebin_with_density(h_Wjets_signal_mvamet_weighted, bin_edges, n_edges);
+	TH1F* h_Wjets_single_control_mvamet_weighted_rebinned = (TH1F*) Rebin_with_density(h_Wjets_single_control_mvamet_weighted , bin_edges , n_edges);
+	TH1F* h_data_single_muon_control_mvamet_rebinned = (TH1F*) Rebin_with_density(h_data_single_muon_control_mvamet , bin_edges , n_edges);
+
 	//Draw_2_Hist(h_Photon_Photon_Control_mvamet_weighted_rebinned, h_data_photon_control_mvamet_rebinned, "Comparison of MET in #gamma Jet Data and MC", "mvamet" , "", "MC", "Data", 2, 1, "");
 	// Draw_2_Hist(h_Zll_di_muon_control_mvamet_weighted_rebinned, h_data_di_muon_control_mvamet_rebinned, "Comparison of MET in Z#rightarrow#mu#my  Data and MC", "mvamet" , "", "MC", "Data", 2, 1, "");
 	Draw_CMS_Preliminary_2h(category, bin_edges , n_edges ,  h_Photon_Photon_Control_mvamet_weighted_rebinned , h_data_photon_control_mvamet_rebinned,  "Expected (pre-fit)", "Data: #gamma + Jet", 4 , 1 , 1 , 20 , "Fake MET/GeV");
 	Draw_CMS_Preliminary_2h(category, bin_edges , n_edges ,  h_Zll_di_muon_control_mvamet_weighted_rebinned , h_data_di_muon_control_mvamet_rebinned,  "Expected (pre-fit)" , "Data: Z#rightarrow#mu#mu", 4 , 1 , 1 , 20 , "Fake MET/GeV");
+	Draw_CMS_Preliminary_2h(category, bin_edges , n_edges ,  h_Wjets_single_control_mvamet_weighted_rebinned , h_data_single_muon_control_mvamet_rebinned,  "Expected (pre-fit)" , "Data: W#rightarrow l#nu", 4 , 1 , 1 , 20 , "Fake MET/GeV");
 
-	// ===============================================
-	// ESTIMATE USING THE PHOTON + JET control region
+// ===============================================
+// ESTIMATE USING THE PHOTON + JET control region
+// ===============================================
 
 	// the first step is to construt the histogram of the ratios of the Z_pt to the photon_pt
  	TH1F* h_pho_transfer_function_unweighted = (TH1F*) h_Ratio(h_Znunu_Signal_genVpt_unweighted, h_Photon_Photon_Control_genVpt_unweighted);// TCanvas *e = new TCanvas(); h_pho_transfer_function_unweighted->Draw();
@@ -158,29 +168,10 @@ void Get_Estimate_from(TString file_directory , TString category)
 	// Draw_2_Hist(h_Estimate_from_Pho_Data, h_Znunu_Signal_mvamet_weighted, "Estimate of Z#rightarrow#nu#nu from Data" + category, "MET", "", "Estimate from #gamma + Jet Data", "Z#rightarrow#nu#nu", 2 , 1, "Data");
 	
 
-// //==========================================
-	
-// 	//figue out what is going wrong with the photon pt 
 
-// 	//plot the photon pt and Z pt distributions in MC
-// 	// Draw_2_Hist(h_Photon_Photon_Control_genVpt_unweighted, h_Znunu_Signal_genVpt_weighted, "Comparison of the Z and #gamma Pt in " + category, "Pt", "", "#gamma" , "Z", 2, 1, "");
-// 	// Draw_2_Hist(h_PhotonPt_scaled_to_ZPt, h_Znunu_Signal_genVpt_unweighted, "#gamma pt scaled to Z pt in " + category, "Pt", "", "#gamma", "Z", 2, 1, "");
-// 	// TCanvas* a = new TCanvas();
-// 	// h_ratio_equal_integrals->Draw();
-
-// 	// TH1F* h_ZPt_scaled_to_PhotonPt = (TH1F*) Scale_h1_to_h2(h_Znunu_Signal_genVpt_unweighted, h_Photon_Photon_Control_genVpt_unweighted);
-// 	// Draw_2_Hist(h_Photon_Photon_Control_genVpt_unweighted, h_ZPt_scaled_to_PhotonPt, "Z pt scaled to #gamma pt in " + category , "Pt",  "", "#gamma" , "Z" , 2 , 1 , "");
-// 	// TH1F* h_ratio_equal_integrals_2 = (TH1F*) h_Ratio(h_ZPt_scaled_to_PhotonPt , h_Photon_Photon_Control_genVpt_unweighted);
-// 	// //Draw_2_Hist(TH1F* h_1, TH1F* h_2, const Char_t *Name, const Char_t *XAxis, const Char_t *YAxis, const Char_t *label1, const Char_t * label2, Color_t lcolor1, Color_t lcolor2, const Char_t* h1source)
-// 	// TCanvas* b = new TCanvas();
-// 	// h_ratio_equal_integrals_2->Draw();
-	
-
-// // //=================================================
-
-
-// 	// ===============================================
-	// ESTIMATE USING THE DI-MUON cntrol region
+//=================================================
+// ESTIMATE USING THE DI-MUON cntrol region
+// ===============================================
 	// the first step is to construct the histogram of the ratios of the Z_nunu MC to Z_mumu MC
 	TH1F* h_di_muon_transfer_function_unweighted = (TH1F*) h_Ratio(h_Znunu_Signal_mvamet_unweighted , h_Zll_di_muon_control_mvamet_unweighted);
 	//now use this transfer function to correct the shape
@@ -196,20 +187,44 @@ void Get_Estimate_from(TString file_directory , TString category)
 	// Draw_2_Hist(h_Estimate_from_di_muon_Data, h_Znunu_Signal_mvamet_weighted, "Estimate of Z#rightarrow#nu#nu from Dimuon Data" + category, "MET", "", "Estiamte from Z#rightarrow#mu#mu Data", "Z#rightarrow#nu#nu", 4, 1, "Data");
 	
 
-	//REBIN ALL THE DATA ESTIMATES
+//=====================================================
+// ESTIMATION FOR W+JETS signal region
+//=====================================================
+
+	// the first step is to construct the histogram of the ratios of the W_lnu MC to w_lnu MC
+	TH1F* h_wjets_transfer_function_unweighted = (TH1F*) h_Ratio(h_Wjets_signal_mvamet_unweighted , h_Wjets_single_control_mvamet_unweighted );
+	//now use this transfer function to correct the shape
+	TH1F* h_Estimate_from_wjets_MC = (TH1F*) Bin_by_Bin_Correction(h_Wjets_single_control_mvamet_unweighted , h_wjets_transfer_function_unweighted);
+	// Draw_2_Hist(h_Estimate_from_wjets_MC, h_Wjets_signal_mvamet_unweighted, "Estimate of W#rightarrow l#nu from W#rightarrow l#nu MC" + category, "MET", "", "Estimate from W#rightarrow l#nu MC", "W#rightarrow l#nu", 4, 1, "");
+	
+	//make the histogram so that we can do the estimate from data
+	TH1F* h_wjets_transfer_function_weighted = (TH1F*) h_Ratio( h_Wjets_signal_mvamet_weighted , h_Wjets_single_control_mvamet_weighted );
+	// plot this histogram to compare to MonoV paper , first rebin and then plot
+	TH1F* h_wjets_transfer_rebinned = (TH1F*) Divide_with_variable_bins(h_Wjets_signal_mvamet_weighted_rebinned , h_Wjets_single_control_mvamet_weighted_rebinned, category ,bin_edges , n_edges);
+	Draw_1_Hist(h_wjets_transfer_rebinned, "Shape+Normalization Transfer Ratios " , "R^{W}" ,"MET(GeV)", 4 , "EP" , category , 0, 4);
+// 	//create the estimate from data
+	TH1F* h_Estimate_from_single_muon_data = (TH1F*) Bin_by_Bin_Correction(h_data_single_muon_control_mvamet , h_wjets_transfer_function_weighted);
+	Draw_2_Hist(h_Estimate_from_single_muon_data, h_Wjets_signal_mvamet_weighted, "Estimate of W#rightarrow l#nu from W#rightarrow l#nu Data" + category, "MET", "", "Estiamte from W#rightarrow l#nu Data", "W#rightarrow l#nu", 4, 1, "Data");
+	
+
+
+	// //REBIN ALL THE DATA ESTIMATES
 	TH1F* h_Estimate_from_Pho_Data_rebinned = (TH1F*) Rebin_with_density(h_Estimate_from_Pho_Data , bin_edges , n_edges);
 	TH1F* h_Estimate_from_di_muon_Data_rebinned = (TH1F*) Rebin_with_density(h_Estimate_from_di_muon_Data , bin_edges , n_edges);
-	//Draw_3_Hist( h_Znunu_Signal_mvamet_weighted_rebinned , h_Estimate_from_Pho_Data_rebinned,h_Estimate_from_di_muon_Data_rebinned,  "Z#rightarrow#nu#nu MC", "Estimate from #gamma + Jet Data", "Estimate from Z#rightarrow#mu#mu Data" ,  1 , 2 , 4 );
-	//TCanvas* c5 = new TCanvas();
+	TH1F* h_Estimate_from_single_muon_data_rebinned = (TH1F*) Rebin_with_density(h_Estimate_from_single_muon_data , bin_edges, n_edges);
+	// //Draw_3_Hist( h_Znunu_Signal_mvamet_weighted_rebinned , h_Estimate_from_Pho_Data_rebinned,h_Estimate_from_di_muon_Data_rebinned,  "Z#rightarrow#nu#nu MC", "Estimate from #gamma + Jet Data", "Estimate from Z#rightarrow#mu#mu Data" ,  1 , 2 , 4 );
+	// //TCanvas* c5 = new TCanvas();
 	Draw_CMS_Preliminary_2h(category ,bin_edges, n_edges,  h_Znunu_Signal_mvamet_weighted_rebinned , h_Estimate_from_Pho_Data_rebinned, "Z#rightarrow#nu#nu MC" , "Estiamte from #gamma + Jet Data", 1 ,  2 ,1, 20 , "MET/GeV");
 	Draw_CMS_Preliminary_2h(category, bin_edges, n_edges , h_Znunu_Signal_mvamet_weighted_rebinned , h_Estimate_from_di_muon_Data_rebinned,  "Z#rightarrow#nu#nu MC" , "Estimate from Z#rightarrow#mu#mu Data" , 1 , 4, 1, 22 , "MET/GeV");
+	Draw_CMS_Preliminary_2h(category, bin_edges, n_edges , h_Wjets_signal_mvamet_weighted_rebinned , h_Estimate_from_single_muon_data_rebinned,  "W#rightarrow l#nu MC" , "Estimate from W#rightarrow l#nu Data" , 1 , 6, 1, 34 , "MET/GeV");
+	
 	Draw_CMS_Preliminary_3h(category, bin_edges, n_edges,  h_Znunu_Signal_mvamet_weighted_rebinned , h_Estimate_from_Pho_Data_rebinned,h_Estimate_from_di_muon_Data_rebinned,  "Z#rightarrow#nu#nu MC", "Estimate from #gamma + Jet Data", "Estimate from Z#rightarrow#mu#mu Data" ,  1 , 2 , 4 , 20 , 22 , "MET/GeV");
 
 
 }
 
 
-void Z_nunu_Sig_Estimate_both_Cr()
+void Main_bkg_estimations()
 {
 	Get_Estimate_from("/afs/cern.ch/work/b/bbachu/private/Z_nunu/" , "monojet");
 	Get_Estimate_from("/afs/cern.ch/work/b/bbachu/private/Z_nunu/" , "boosted");
