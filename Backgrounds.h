@@ -68,55 +68,42 @@ std::vector< std::vector<TH1F*> > Backgrounds_MET(TString file_directory , TStri
 	std::vector<TH1F*> v_Photon_Backgrounds;
 	std::vector<TH1F*> v_Dimuon_Backgrounds;
 	std::vector<TH1F*> v_Single_Muon_Backgrounds;
-	cout << "b" << endl;
-
 
 	// **** Photon+Jet Control Region ****
 	// Calculated using purity
 	TH1F* h_Photon_Photon_control_background = (TH1F*) Make_my_hist(rootfile, category, "Photon_photon_control", "mvamet", "background", nbins, xMin, xMax, xMin);
-	cout << "c" << endl;
 
 	TH1F* h_Photon_Photon_control_background_rebinned = (TH1F*) Rebin_with_density(h_Photon_Photon_control_background, bin_edges, n_edges) ;		v_Photon_Backgrounds.push_back(h_Photon_Photon_control_background_rebinned) ;
 	cout << "d" << endl;
 	
 	// **** Di-muon Control Region ****
 	// Top and Dibosons
-	TH1F* h_WW_di_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "WW_di_muon_control", "mvamet", "weight" , nbins , xMin, xMax, xMin) ; 
-	cout << "e" << endl;
+	TH1F* h_WW_di_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "WW_di_muon_control", "mvamet", "background" , nbins , xMin, xMax, xMin) ; 
 	TH1F* h_WW_di_muon_control_weighted_rebinned = (TH1F*) Rebin_with_density(h_WW_di_muon_control_weighted, bin_edges, n_edges) ;	v_Dimuon_Backgrounds.push_back(h_WW_di_muon_control_weighted_rebinned) ;
-	cout << "f" << endl;
-	TH1F* h_WZ_di_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "WZ_di_muon_control", "mvamet", "weight" , nbins , xMin, xMax, xMin) ; 
-	cout << "g" << endl;
+	TH1F* h_WZ_di_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "WZ_di_muon_control", "mvamet", "background" , nbins , xMin, xMax, xMin) ; 
 	TH1F* h_WZ_di_muon_control_weighted_rebinned = (TH1F*) Rebin_with_density(h_WZ_di_muon_control_weighted, bin_edges, n_edges) ;	v_Dimuon_Backgrounds.push_back(h_WZ_di_muon_control_weighted_rebinned) ; 
-	cout << "h" << endl;
-	TH1F* h_ZZ_di_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "ZZ_di_muon_control", "mvamet", "weight" , nbins , xMin, xMax, xMin) ; 
-	cout << "i" << endl;
+	TH1F* h_ZZ_di_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "ZZ_di_muon_control", "mvamet", "background" , nbins , xMin, xMax, xMin) ; 
 	TH1F* h_ZZ_di_muon_control_weighted_rebinned = (TH1F*) Rebin_with_density(h_ZZ_di_muon_control_weighted , bin_edges, n_edges) ;	v_Dimuon_Backgrounds.push_back(h_ZZ_di_muon_control_weighted_rebinned) ;
-	cout << "j" << endl;
-	TH1F* h_SingleTop_di_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "SingleTop_di_muon_control", "mvamet", "weight" , nbins , xMin, xMax, xMin) ; 
-	cout << "k" << endl;
+	TH1F* h_SingleTop_di_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "SingleTop_di_muon_control", "mvamet", "background" , nbins , xMin, xMax, xMin) ; 
 	TH1F* h_SingleTop_di_muon_control_weighted_rebinned = (TH1F*) Rebin_with_density(h_SingleTop_di_muon_control_weighted, bin_edges, n_edges) ;	v_Dimuon_Backgrounds.push_back(h_SingleTop_di_muon_control_weighted_rebinned) ;
-	cout << "l" << endl;
-	TH1F* h_ttbar_di_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "ttbar_di_muon_control", "mvamet", "weight" , nbins , xMin, xMax, xMin); 
-	cout << "m" << endl;
+	TH1F* h_ttbar_di_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "ttbar_di_muon_control", "mvamet", "background" , nbins , xMin, xMax, xMin); 
 	TH1F* h_ttbar_di_muon_control_weighted_rebinned = (TH1F*) Rebin_with_density(h_ttbar_di_muon_control_weighted, bin_edges, n_edges) ;	v_Dimuon_Backgrounds.push_back(h_ttbar_di_muon_control_weighted_rebinned) ;
-	cout << "n" << endl;
 
 	// **** Single Muon Control Region ***
 	// Top, Dibosons, Z->ll , QCD
-	TH1F* h_QCD_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "QCD_single_muon_control", "mvamet", "weight" , nbins , xMin, xMax, xMin) ; 
+	TH1F* h_QCD_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "QCD_single_muon_control", "mvamet", "background" , nbins , xMin, xMax, xMin) ; 
 	TH1F* h_QCD_single_muon_control_weighted_rebinned = (TH1F*) Rebin_with_density(h_QCD_single_muon_control_weighted, bin_edges, n_edges) ;		v_Single_Muon_Backgrounds.push_back(h_QCD_single_muon_control_weighted_rebinned) ;
-	TH1F* h_Zll_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "Zll_single_muon_control", "mvamet", "weight" , nbins , xMin, xMax, xMin) ; 
+	TH1F* h_Zll_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "Zll_single_muon_control", "mvamet", "background" , nbins , xMin, xMax, xMin) ; 
 	TH1F* h_Zll_single_muon_control_weighted_rebinned = (TH1F*) Rebin_with_density(h_Zll_single_muon_control_weighted, bin_edges, n_edges) ;		v_Single_Muon_Backgrounds.push_back(h_Zll_single_muon_control_weighted_rebinned) ;
-	TH1F* h_WW_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "WW_single_muon_control", "mvamet", "weight" , nbins , xMin, xMax, xMin) ; 
+	TH1F* h_WW_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "WW_single_muon_control", "mvamet", "background" , nbins , xMin, xMax, xMin) ; 
 	TH1F* h_WW_single_muon_control_weighted_rebinned = (TH1F*) Rebin_with_density(h_WW_single_muon_control_weighted, bin_edges, n_edges) ;		v_Single_Muon_Backgrounds.push_back(h_WW_single_muon_control_weighted_rebinned) ;
-	TH1F* h_WZ_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "WZ_single_muon_control", "mvamet", "weight" , nbins , xMin, xMax, xMin) ; 
+	TH1F* h_WZ_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "WZ_single_muon_control", "mvamet", "background" , nbins , xMin, xMax, xMin) ; 
 	TH1F* h_WZ_single_muon_control_weighted_rebinned = (TH1F*) Rebin_with_density(h_WZ_single_muon_control_weighted, bin_edges, n_edges) ;	v_Single_Muon_Backgrounds.push_back(h_WW_single_muon_control_weighted_rebinned) ;
-	TH1F* h_ZZ_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "ZZ_single_muon_control", "mvamet", "weight" , nbins , xMin, xMax, xMin) ; 
+	TH1F* h_ZZ_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "ZZ_single_muon_control", "mvamet", "background" , nbins , xMin, xMax, xMin) ; 
 	TH1F* h_ZZ_single_muon_control_weighted_rebinned = (TH1F*) Rebin_with_density(h_ZZ_single_muon_control_weighted, bin_edges, n_edges) ;		v_Single_Muon_Backgrounds.push_back(h_ZZ_single_muon_control_weighted_rebinned) ;
-	TH1F* h_ttbar_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "ttbar_single_muon_control", "mvamet", "weight" , nbins , xMin, xMax, xMin) ; 
+	TH1F* h_ttbar_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "ttbar_single_muon_control", "mvamet", "background" , nbins , xMin, xMax, xMin) ; 
 	TH1F* h_ttbar_single_muon_control_weighted_rebinned = (TH1F*) Rebin_with_density(h_ttbar_single_muon_control_weighted, bin_edges, n_edges) ;		v_Single_Muon_Backgrounds.push_back(h_ttbar_single_muon_control_weighted_rebinned) ;
-	TH1F* h_SingleTop_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "SingleTop_single_muon_control", "mvamet", "weight" , nbins , xMin, xMax, xMin) ; 
+	TH1F* h_SingleTop_single_muon_control_weighted = (TH1F*) Make_my_hist(rootfile, category, "SingleTop_single_muon_control", "mvamet", "background" , nbins , xMin, xMax, xMin) ; 
 	TH1F* h_SingleTop_single_muon_control_weighted_rebinned = (TH1F*) Rebin_with_density(h_SingleTop_single_muon_control_weighted, bin_edges, n_edges) ;	v_Single_Muon_Backgrounds.push_back(h_SingleTop_single_muon_control_weighted_rebinned) ;
 
 
